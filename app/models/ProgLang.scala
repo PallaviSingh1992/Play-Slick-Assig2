@@ -1,3 +1,3 @@
 package models
 
-case class ProgLang(id:Int,name:String)
+case class ProgLanguage(id:Int,name:String)
