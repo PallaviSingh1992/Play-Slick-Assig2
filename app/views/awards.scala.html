@@ -1,0 +1,88 @@
+@views.html.main("awards"){
+<div class="container">
+    <div class="jumbotron">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john@@example.com</td>
+                <td><button type="button" class="btn btn-success">Success</button></td>
+                <td><button type="button" class="btn btn-info">Info</button></td>
+
+            </tr>
+            <tr>
+                <td>Mary</td>
+                <td>Moe</td>
+                <td>mary@@example.com</td>
+                <td><button type="button" class="btn btn-success">Success</button></td>
+                <td><button type="button" class="btn btn-info">Info</button></td>
+            </tr>
+            <tr>
+                <td>July</td>
+                <td>Dooley</td>
+                <td>july@@example.com</td>
+                <td><button type="button" class="btn btn-success">Success</button></td>
+                <td><button type="button" class="btn btn-info">Info</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add Award</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" name="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1"></span>
+                        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
+                        <span class="input-group-addon" id="basic-addon2">example.com</span>
+                    </div>
+                    <br><br>
+                    <button type="button" class="btn btn-warning pull-right">Action</button>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" href="">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+
+}
