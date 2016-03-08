@@ -9,7 +9,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
 import scala.concurrent.Future
 
-trait LanguageTable  { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait LanguageTable extends UserRepo{ self: HasDatabaseConfigProvider[JdbcProfile] =>
   import driver.api._
 
   class LanguageTable(tag:Tag) extends Table[Language](tag,"language") {
@@ -17,7 +17,7 @@ trait LanguageTable  { self: HasDatabaseConfigProvider[JdbcProfile] =>
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val fluency=column[String]("fluency", O.SqlType("VARCHAR(200)"))
 
-    def rel = foreignKey("user_id_fk",id, userTable)(_.id)
+    def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
     def * = (id, name,fluency) <>(Language.tupled, Language.unapply)
   }
 

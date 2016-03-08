@@ -8,14 +8,14 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
 import scala.concurrent.Future
 
-trait ProgLanguageTable  { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait ProgLanguageTable extends UserRepo{ self: HasDatabaseConfigProvider[JdbcProfile] =>
   import driver.api._
 
   class ProgLanguageTable(tag:Tag) extends Table[ProgLanguage](tag,"proglanguage") {
     val id=column[Int]("id", O.AutoInc, O.PrimaryKey)
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
 
-    def rel = foreignKey("user_id_fk",id, userTable)(_.id)
+    def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
     def * = (id, name) <>(ProgLanguage.tupled, ProgLanguage.unapply)
   }
 

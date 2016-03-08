@@ -8,7 +8,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
 import scala.concurrent.Future
 
-trait AssignmentTable  { self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait AssignmentTable extends UserRepo{ self: HasDatabaseConfigProvider[JdbcProfile] =>
   import driver.api._
 
   class AssignmentTable(tag:Tag) extends Table[Assignment](tag,"assignment") {
@@ -17,7 +17,7 @@ trait AssignmentTable  { self: HasDatabaseConfigProvider[JdbcProfile] =>
     val marks=column[Int]("marks")
     val remarks=column[String]("fluency", O.SqlType("VARCHAR(200)"))
 
-    def rel = foreignKey("user_id_fk",id, userTable)(_.id)
+    def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
     def * = (id, name,marks,remarks) <>(Assignment.tupled,Assignment.unapply)
   }
 
