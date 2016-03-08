@@ -1,6 +1,6 @@
 package repository
 
-import javax.inject.Inject
+import com.google.inject.Inject
 import com.google.inject.ImplementedBy
 import models.Assignment
 import play.api.db.slick.DatabaseConfigProvider
