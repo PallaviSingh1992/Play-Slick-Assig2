@@ -5,12 +5,11 @@ import models.ProgLanguage
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Action, Controller}
-import services.progLanguageApi
-
+import services.ProgLanguageApi
 import scala.concurrent.Future
 
 
-class ProgLanguageController @Inject()(service:progLanguageApi) extends Controller {
+class ProgLanguageController @Inject()(service:ProgLanguageApi) extends Controller {
   val progLangForm = Form(
     mapping(
       "id" -> number,

@@ -7,7 +7,7 @@ import repository.ProgLanguageRepo
 import scala.concurrent.Future
 
 @ImplementedBy(classOf[ProgLanguageService])
-trait progLanguageApi{
+trait ProgLanguageApi{
   def insertProg(id:Int,name:String): Future[Int]
   def updateProg(id:Int,name:String): Future[Int]
   def deleteProg(id:Int):Future[Int]
