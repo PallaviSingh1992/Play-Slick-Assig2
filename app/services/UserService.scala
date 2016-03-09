@@ -1,12 +1,19 @@
 package services
 
 
-import com.google.inject.Inject
+import com.google.inject.{ImplementedBy, Inject}
 import models.User
 import repository.UserRepo
 
 import scala.concurrent.Future
 
+@ImplementedBy(classOf[UserService])
+trait userServiceApi{
+  def insertUser(id:Int,name:String,email:String,mobile:String,password:String):Future[Int]
+  def updateUser(id:Int,name:String,email:String,mobile:String,password:String):Future[Int]
+  def deleteUser(id:Int):Future[Int]
+  def getUser:Future[List[User]]
+}
 
 class UserService @Inject()(user:UserRepo) {
 
