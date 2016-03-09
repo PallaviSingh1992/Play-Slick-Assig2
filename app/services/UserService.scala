@@ -15,7 +15,7 @@ trait UserServiceApi{
   def getUser:Future[List[User]]
 }
 
-class UserService @Inject()(user:UserRepo) {
+class UserService @Inject()(user:UserRepo) extends UserServiceApi{
 
   def insertUser(id:Int,name:String,email:String,mobile:String,password:String):Future[Int]={
     user.insert(id,name,email,mobile,password)

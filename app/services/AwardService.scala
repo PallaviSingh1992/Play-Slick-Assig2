@@ -16,7 +16,7 @@ trait AwardServiceApi{
 
 }
 
-class AwardService @Inject()(award:AwardRepo) {
+class AwardService @Inject()(award:AwardRepo) extends AwardServiceApi{
 
   def insertAward(id:Int,name:String,details:String):Future[Int]={
     award.insert(id,name,details)

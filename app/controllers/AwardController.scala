@@ -1,12 +1,13 @@
 package controllers
 
 import com.google.inject.Inject
-import models.{Award, Assignment}
+import models.Award
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Action, Controller}
 import services.AwardServiceApi
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 
@@ -37,7 +38,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       errorForm => Future.successful(Ok("success")),
       data => {
         service.insertAward(data.id,data.name,data.details).map(res =>
-          Redirect(routes.LanguageController.list())
+          Redirect(routes.AwardController.list())
         )
       })
 
@@ -45,7 +46,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
 
   def delete(id: Int) = Action.async { implicit request =>
     service.deleteAward(id) map { res =>
-      Redirect(routes.LanguageController.list())
+      Redirect(routes.AwardController.list())
     }
   }
 
@@ -55,7 +56,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       errorForm => Future.successful(Ok("success")),
       data => {
         service.updateAward(data.id,data.name,data.details).map(res =>
-          Redirect(routes.LanguageController.list())
+          Redirect(routes.AwardController.list())
         )
       })
 

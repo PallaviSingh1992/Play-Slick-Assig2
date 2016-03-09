@@ -6,6 +6,7 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Action, Controller}
 import services.AssignmentServiceApi
+import scala.concurrent.ExecutionContext.Implicits.global
 
 import scala.concurrent.Future
 

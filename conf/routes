@@ -5,6 +5,11 @@
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
 GET     /list                       controllers.UserController.list
+GET     /listassign                 controllers.AssignmentController.list
+GET     /listaward                  controllers.AwardController.list
+GET     /listlang                   controllers.LanguageController.list
+GET     /listprog                   controllers.ProgLanguageController.list
+GET     /listbyid/:id               controllers.AssignmentController.listById(id:Int)
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code

@@ -15,7 +15,7 @@ trait AssignmentTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcPro
     val id=column[Int]("id", O.AutoInc, O.PrimaryKey)
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val marks=column[Int]("marks")
-    val remarks=column[String]("fluency", O.SqlType("VARCHAR(200)"))
+    val remarks=column[String]("remarks", O.SqlType("VARCHAR(200)"))
 
     def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
     def * = (id, name,marks,remarks) <>(Assignment.tupled,Assignment.unapply)

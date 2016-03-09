@@ -14,7 +14,7 @@ trait AssignmentServiceApi{
   def getAssignment:Future[List[Assignment]]
 }
 
-class AssignmentService @Inject()(assignment:AssignmentRepo) {
+class AssignmentService @Inject()(assignment:AssignmentRepo) extends AssignmentServiceApi{
 
   def insertAssignment(id:Int,name:String,marks:Int,remarks:String):Future[Int]={
     assignment.insert(id,name,marks,remarks)

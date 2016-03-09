@@ -6,6 +6,7 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Action, Controller}
 import services.UserServiceApi
+import scala.concurrent.ExecutionContext.Implicits.global
 
 import scala.concurrent.Future
 
@@ -39,7 +40,7 @@ class UserController @Inject()(service:UserServiceApi) extends Controller {
       errorForm => Future.successful(Ok("success")),
       data => {
         service.insertUser(data.id, data.name, data.email, data.mobile, data.password).map(res =>
-          Redirect(routes.LanguageController.list())
+          Redirect(routes.UserController.list())
 
         )
       })
@@ -47,7 +48,7 @@ class UserController @Inject()(service:UserServiceApi) extends Controller {
 
   def delete(id: Int) = Action.async { implicit request =>
     service.deleteUser(id) map { res =>
-      Redirect(routes.LanguageController.list())
+      Redirect(routes.UserController.list())
     }
   }
 
@@ -57,7 +58,7 @@ class UserController @Inject()(service:UserServiceApi) extends Controller {
       errorForm => Future.successful(Ok("success")),
       data => {
         service.updateUser(data.id, data.name, data.email, data.mobile, data.password).map(res =>
-          Redirect(routes.LanguageController.list())
+          Redirect(routes.UserController.list())
 
         )
       })

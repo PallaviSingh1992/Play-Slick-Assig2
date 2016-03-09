@@ -14,7 +14,7 @@ trait ProgLanguageApi{
   def getProg():Future[List[ProgLanguage]]
 }
 
-class ProgLanguageService @Inject()(progLanguage:ProgLanguageRepo) {
+class ProgLanguageService @Inject()(progLanguage:ProgLanguageRepo) extends ProgLanguageApi {
 
   def insertProg(id:Int,name:String): Future[Int]={
     progLanguage.insert(id,name)
