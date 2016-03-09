@@ -59,7 +59,7 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
               if(isuser.get.password == userData.password)
                 {
                   println(""+isuser.get.id)
-                Redirect(routes.AwardController.list).withSession("id"->(isuser.get.id).toString,"email"->isuser.get.email)
+                Redirect(routes.AwardController.listById(isuser.get.id)).withSession("id"->(isuser.get.id).toString,"email"->isuser.get.email)
                 }
               else {
                   Redirect(routes.LoginController.getLogin)

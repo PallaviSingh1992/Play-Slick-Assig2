@@ -3,7 +3,7 @@ package repository
 
 import javax.xml.soap.Detail
 import com.google.inject.{Inject, ImplementedBy}
-import models.Award
+import models.{User, Award}
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
@@ -36,11 +36,17 @@ class  AwardRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvid
     db.run { insertQuery }
   }
 
-  def update(id:Int,name:String,details:String): Future[Int] = db.run { awardTableQuery.filter(_.id === id).update(Award(id,name,details)) }
+  def update(id:Int,name:String,details:String): Future[Int] = db.run { awardTableQuery.filter(_.name === name).update(Award(id,name,details)) }
 
   def delete(id: Int): Future[Int] = db.run { awardTableQuery.filter(_.id === id).delete }
 
   def getAll(): Future[List[Award]] = db.run { awardTableQuery.to[List].result }
+
+  def getAward(id:Int): Future[Option[Award]] = {
+
+    db.run(awardTableQuery.filter(_.id === id).result.headOption)
+
+  }
 
 }
 

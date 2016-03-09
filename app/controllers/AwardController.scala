@@ -30,9 +30,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
     }
   }
   def listById(id:Int)=Action.async{implicit request=>
-    service.getAward.map {
-      list => Ok("" + list.filter(_.id==id))
-    }
+    service.getAwardById(id).map{list=>Ok(views.html.awards(list.toList,awardForm))}
   }
 
   def add=Action.async{implicit request =>
