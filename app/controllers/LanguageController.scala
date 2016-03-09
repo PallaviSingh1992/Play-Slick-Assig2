@@ -8,10 +8,7 @@ import services.LanguageServiceApi
 import scala.concurrent.ExecutionContext.Implicits.global
 import models.Language
 
-//case class Lang(id:Int,name:String,fluency:String)
-
 class LanguageController @Inject()(service:LanguageServiceApi) extends Controller {
-
 
   val langForm = Form(
     mapping(
