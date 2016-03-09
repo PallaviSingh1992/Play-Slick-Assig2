@@ -46,11 +46,11 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
     }
 
     def update(id: Int,name:String,fluency:String) = Action.async { implicit request =>
-      service.updateLanguage(id,name,fluency) map { res =>
+      service.updateLanguage(id, name, fluency) map { res =>
         Redirect(routes.LanguageController.list())
       }
 
-
+    }
 
 
 }
