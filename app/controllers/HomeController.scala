@@ -19,8 +19,8 @@ class HomeController @Inject()(ass:AssignmentRepo) extends Controller {
    * a path of `/`.
    */
   def index = Action {
-    //Ok(views.html.index("Your new application is ready."))
-    Ok(views.html.awards())
+    Ok(views.html.index("Your new application is ready."))
+   // Ok(views.html.awards())
   }
 
 }
