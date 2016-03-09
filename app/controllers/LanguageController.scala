@@ -40,18 +40,24 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
 
     }
 
+  def update=Action.async{implicit request =>
+    langForm.bindFromRequest.fold(
+      // if any error in submitted data
+      errorForm => Future.successful(Ok("success")),
+      data => {
+        service.updateLanguage(data.id,data.name,data.fluency).map(res =>
+          Redirect(routes.LanguageController.list())
+        )
+      })
+
+  }
+
   def delete(id: Int) = Action.async { implicit request =>
     service.deleteLanguage(id) map { res =>
       Redirect(routes.LanguageController.list())
     }
   }
 
-    def update(id: Int,name:String,fluency:String) = Action.async { implicit request =>
-      service.updateLanguage(id, name, fluency) map { res =>
-        Redirect(routes.LanguageController.list())
-      }
-
-    }
 
 
 }

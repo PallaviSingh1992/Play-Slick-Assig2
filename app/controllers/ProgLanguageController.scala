@@ -38,17 +38,24 @@ class ProgLanguageController @Inject()(service:progLanguageApi) extends Controll
 
   }
 
+  def update=Action.async{implicit request =>
+    progLangForm.bindFromRequest.fold(
+      // if any error in submitted data
+      errorForm => Future.successful(Ok("success")),
+      data => {
+        service.updateProg(data.id,data.name).map(res =>
+          Redirect(routes.ProgLanguageController.list())
+        )
+      })
+
+  }
+
   def delete(id: Int) = Action.async { implicit request =>
     service.deleteProg(id: Int) map { res =>
       Redirect(routes.ProgLanguageController.list())
     }
   }
 
-    def update(id: Int, name: String, fluency: String) = Action.async { implicit request =>
-      service.updateProg(id, name) map { res =>
-        Redirect(routes.ProgLanguageController.list())
-      }
 
-    }
 
   }
