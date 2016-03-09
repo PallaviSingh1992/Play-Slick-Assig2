@@ -27,6 +27,11 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
       list => Ok("" + list)
     }
   }
+  def listById(id:Int)=Action.async{implicit request=>
+    service.getLanguage.map {
+      list => Ok("" + list.filter(_.id==id))
+    }
+  }
 
     def add=Action.async{implicit request =>
       langForm.bindFromRequest.fold(

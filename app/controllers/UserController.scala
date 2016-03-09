@@ -27,6 +27,11 @@ class UserController @Inject()(service:UserServiceApi) extends Controller {
       list => Ok("" + list)
     }
   }
+  def listById(id:Int)=Action.async{implicit request=>
+    service.getUser.map {
+      list => Ok("" + list.filter(_.id==id))
+    }
+  }
 
   def add = Action.async { implicit request =>
     userForm.bindFromRequest.fold(

@@ -26,6 +26,12 @@ class ProgLanguageController @Inject()(service:progLanguageApi) extends Controll
     }
   }
 
+  def listById(id:Int)=Action.async{implicit request=>
+    service.getProg.map {
+      list => Ok("" + list.filter(_.id==id))
+    }
+  }
+
   def add=Action.async{implicit request =>
     progLangForm.bindFromRequest.fold(
       // if any error in submitted data

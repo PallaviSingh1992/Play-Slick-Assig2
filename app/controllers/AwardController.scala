@@ -25,6 +25,11 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       list => Ok("" + list)
     }
   }
+  def listById(id:Int)=Action.async{implicit request=>
+    service.getAward.map {
+      list => Ok("" + list.filter(_.id==id))
+    }
+  }
 
   def add=Action.async{implicit request =>
     awardForm.bindFromRequest.fold(
