@@ -9,7 +9,12 @@ GET     /listassign                 controllers.AssignmentController.list
 GET     /listaward                  controllers.AwardController.list
 GET     /listlang                   controllers.LanguageController.list
 GET     /listprog                   controllers.ProgLanguageController.list
-GET     /listbyid/:id               controllers.AssignmentController.listById(id:Int)
+GET     /listassigid/:id               controllers.AssignmentController.listById(id:Int)
+GET     /listawardid/:id               controllers.AwardController.listById(id:Int)
+GET     /listlangid/:id               controllers.LanguageController.listById(id:Int)
+GET     /listprogid/:id               controllers.ProgLanguageController.listById(id:Int)
+GET     /listbyid/:id               controllers.UserController.listById(id:Int)
+
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
