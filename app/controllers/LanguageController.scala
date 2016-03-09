@@ -27,13 +27,12 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
     }
   }
 
-
     def add=Action.async{implicit request =>
       langForm.bindFromRequest.fold(
         // if any error in submitted data
         errorForm => Future.successful(Ok("success")),
       data => {
-        service.insertLanguage(data.id.toInt,data.name,data.fluency).map(res =>
+        service.insertLanguage(data.id,data.name,data.fluency).map(res =>
           Redirect(routes.LanguageController.list)
 
         )
