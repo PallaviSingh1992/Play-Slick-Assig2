@@ -4,6 +4,7 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.LoginController.getLogin
+GET     /login                      controllers.LoginController.login
 GET     /list                       controllers.UserController.list
 GET     /listassign                 controllers.AssignmentController.list
 GET     /listaward                  controllers.AwardController.list
