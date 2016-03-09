@@ -30,9 +30,9 @@ class  AwardRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvid
   import driver.api._
 
   def insert(id:Int,name:String,details:String): Future[Int] = {
-    println("++++++++++>"+id+"::"+name+"++++")
+  //  println("++++++++++>"+id+"::"+name+"++++")
     val insertQuery = awardTableQuery += Award(id,name,details)
-    println("==================>"+insertQuery.statements.head)
+  //  println("==================>"+insertQuery.statements.head)
     db.run { insertQuery }
   }
 
