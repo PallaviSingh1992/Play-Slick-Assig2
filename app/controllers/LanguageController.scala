@@ -44,6 +44,7 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
     service.deleteLanguage(id) map { res =>
       Redirect(routes.LanguageController.list())
     }
+  }
 
     def update(id: Int,name:String,fluency:String) = Action.async { implicit request =>
       service.updateLanguage(id, name, fluency) map { res =>

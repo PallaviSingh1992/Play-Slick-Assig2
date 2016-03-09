@@ -18,4 +18,5 @@ class AssignmentController @Inject()(service:AssignmentServiceApi) extends Contr
     )(Assignment.apply)(Assignment.unapply)
   )
 
+
 }

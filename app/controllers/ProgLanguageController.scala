@@ -4,8 +4,10 @@ import com.google.inject.Inject
 import models.ProgLanguage
 import play.api.data.Form
 import play.api.data.Forms._
-import play.api.mvc.Controller
+import play.api.mvc.{Action, Controller}
 import services.progLanguageApi
+
+import scala.concurrent.Future
 
 
 class ProgLanguageController @Inject()(service:progLanguageApi) extends Controller {
@@ -16,6 +18,37 @@ class ProgLanguageController @Inject()(service:progLanguageApi) extends Controll
     )(ProgLanguage.apply)(ProgLanguage.unapply)
   )
 
+  def list = Action.async { implicit request =>
+    val list = service.getProg()
 
+    list.map {
+      list => Ok("" + list)
+    }
+  }
 
-}
+  def add=Action.async{implicit request =>
+    progLangForm.bindFromRequest.fold(
+      // if any error in submitted data
+      errorForm => Future.successful(Ok("success")),
+      data => {
+        service.insertProg(data.id,data.name).map(res =>
+          Redirect(routes.ProgLanguageController.list())
+        )
+      })
+
+  }
+
+  def delete(id: Int) = Action.async { implicit request =>
+    service.deleteProg(id: Int) map { res =>
+      Redirect(routes.ProgLanguageController.list())
+    }
+  }
+
+    def update(id: Int, name: String, fluency: String) = Action.async { implicit request =>
+      service.updateProg(id, name) map { res =>
+        Redirect(routes.ProgLanguageController.list())
+      }
+
+    }
+
+  }
