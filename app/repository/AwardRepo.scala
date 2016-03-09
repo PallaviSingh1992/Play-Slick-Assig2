@@ -39,5 +39,5 @@ trait  AwardRepo extends AwardTable {self: HasDatabaseConfigProvider[JdbcProfile
 
 }
 
-class AwardImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends ProgLanguageTable with HasDatabaseConfigProvider[JdbcProfile]
+class AwardImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends AwardTable with HasDatabaseConfigProvider[JdbcProfile]
 
