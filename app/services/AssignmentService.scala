@@ -1,11 +1,18 @@
 package services
 
-import com.google.inject.Inject
+import com.google.inject.{ImplementedBy, Inject}
 import models.Assignment
 import repository.AssignmentRepo
 
 import scala.concurrent.Future
 
+@ImplementedBy(classOf[AssignmentService])
+trait AssignmentServiceApi{
+  def insertAssignment(id:Int,name:String,marks:Int,remarks:String):Future[Int]
+  def updateAssignment(id:Int,name:String,marks:Int,remarks:String):Future[Int]
+  def deleteAssignment(id:Int):Future[Int]
+  def getAssignment:Future[List[Assignment]]
+}
 
 class AssignmentService @Inject()(assignment:AssignmentRepo) {
 
