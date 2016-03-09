@@ -34,7 +34,7 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
           }
         if(res==true)
           Redirect(routes.LanguageController.list()).withSession("email"->userData.email)
-        else Redirect(routes.LoginController.getLogin())
+        else Redirect(routes.AwardController.list())
       }
     )
   }
