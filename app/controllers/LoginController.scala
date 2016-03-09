@@ -27,7 +27,7 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
       },
       userData => {
         val res= user.getUser.map{
-            list=>Ok(""+list.filter(res=>res.email==userData.email && res.password==userData.password))
+            list=>list.filter(res=>res.email==userData.email && res.password==userData.password)
           }
         if(res==true)
           Redirect(routes.LanguageController.list()).withSession("email"->userData.email)
