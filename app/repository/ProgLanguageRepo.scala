@@ -12,7 +12,7 @@ trait ProgLanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcP
   import driver.api._
 
   class ProgLanguageTable(tag:Tag) extends Table[ProgLanguage](tag,"proglanguage") {
-    val id=column[Int]("id", O.AutoInc, O.PrimaryKey)
+    val id=column[Int]("id")
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
 
     def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)

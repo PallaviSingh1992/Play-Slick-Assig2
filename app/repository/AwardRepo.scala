@@ -13,7 +13,7 @@ trait AwardTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfile]
   import driver.api._
 
   class AwardTable(tag:Tag) extends Table[Award](tag,"award") {
-    val id=column[Int]("id", O.AutoInc, O.PrimaryKey)
+    val id=column[Int]("id")
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val details= column[String]("details", O.SqlType("VARCHAR(200)"))
 
@@ -29,7 +29,12 @@ class  AwardRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvid
 
   import driver.api._
 
-  def insert(id:Int,name:String,details:String): Future[Int] = db.run { awardTableQuery += Award(id,name,details) }
+  def insert(id:Int,name:String,details:String): Future[Int] = {
+    println("++++++++++>"+id+"::"+name+"++++")
+    val insertQuery = awardTableQuery += Award(id,name,details)
+    println("==================>"+insertQuery.statements.head)
+    db.run { insertQuery }
+  }
 
   def update(id:Int,name:String,details:String): Future[Int] = db.run { awardTableQuery.filter(_.id === id).update(Award(id,name,details)) }
 

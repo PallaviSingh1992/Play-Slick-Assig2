@@ -41,6 +41,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       errorForm => Future.successful(Ok("success")),
       data => {
         val id:Int=request.session.get("id").get.toInt
+        println("---------------->"+id)
         service.insertAward(id,data.name,data.details).map(res =>
           Redirect(routes.AwardController.list())
         )

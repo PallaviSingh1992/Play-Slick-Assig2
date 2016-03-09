@@ -12,7 +12,7 @@ trait AssignmentTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcPro
   import driver.api._
 
   class AssignmentTable(tag:Tag) extends Table[Assignment](tag,"assignment") {
-    val id=column[Int]("id", O.AutoInc, O.PrimaryKey)
+    val id=column[Int]("id")
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val marks=column[Int]("marks")
     val remarks=column[String]("remarks", O.SqlType("VARCHAR(200)"))

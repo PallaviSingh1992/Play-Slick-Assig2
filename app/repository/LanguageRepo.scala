@@ -12,7 +12,7 @@ trait LanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfi
   import driver.api._
 
   class LanguageTable(tag:Tag) extends Table[Language](tag,"language") {
-    val id=column[Int]("id", O.AutoInc, O.PrimaryKey)
+    val id=column[Int]("id")
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val fluency=column[String]("fluency", O.SqlType("VARCHAR(200)"))
 
