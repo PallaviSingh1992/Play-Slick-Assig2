@@ -27,22 +27,18 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
     }
   }
 
-  def add=Action.async{implicit request =>
-  /* def addUser() = Action.async { implicit request =>
-    UserForm.form.bindFromRequest.fold(
-      // if any error in submitted data
-      errorForm => Future.successful(Ok(views.html.index(errorForm, Seq.empty[User]))),
+
+    def add=Action.async{implicit request =>
+      langForm.bindFromRequest.fold(
+        // if any error in submitted data
+        errorForm => Future.successful(Ok("success"))),
       data => {
-        val newUser = User(0, data.name, data.password, data.email)
-        UserService.addUser(newUser).map(res =>
+        service.insertLanguage(data.id,data.name,data.fluency).map(res =>
           Redirect(routes.ApplicationController.getLogin())
 
         )
       })
-  }
- */
-    langForm.bindFromRequest.fold(
-      errorform => Future.successful(Ok(views.html.award()))
-    )
-  }
+
+
+    }
 }
