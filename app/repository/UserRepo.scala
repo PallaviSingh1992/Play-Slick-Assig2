@@ -36,6 +36,15 @@ class  UserRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvide
 
   def getAll(): Future[List[User]] = db.run { userTableQuery.to[List].result }
 
+
+    def getUser(email: String): Future[Option[User]] = {
+
+      db.run(userTableQuery.filter(_.email === email).result.headOption)
+
+    }
+
+
+
 }
 
 //class UserImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends UserTable with HasDatabaseConfigProvider[JdbcProfile]

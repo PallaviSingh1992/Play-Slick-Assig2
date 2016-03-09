@@ -13,6 +13,7 @@ trait UserServiceApi{
   def updateUser(id:Int,name:String,email:String,mobile:String,password:String):Future[Int]
   def deleteUser(id:Int):Future[Int]
   def getUser:Future[List[User]]
+  def getUserByEmail(email:String):Future[Option[User]]
 }
 
 class UserService @Inject()(user:UserRepo) extends UserServiceApi{
@@ -32,4 +33,8 @@ class UserService @Inject()(user:UserRepo) extends UserServiceApi{
   def getUser:Future[List[User]]={
     user.getAll()
   }
+
+ def getUserByEmail(email:String):Future[Option[User]]={
+   user.getUser(email)
+ }
 }

@@ -14,8 +14,10 @@ GET     /listassigid/:id               controllers.AssignmentController.listById
 GET     /listawardid/:id               controllers.AwardController.listById(id:Int)
 GET     /listlangid/:id               controllers.LanguageController.listById(id:Int)
 GET     /listprogid/:id               controllers.ProgLanguageController.listById(id:Int)
-GET     /listbyid/:id               controllers.UserController.listById(id:Int)
+#GET     /listbyid/:id               controllers.UserController.listById(id:Int)
 GET     /deleteaward/:id                controllers.AwardController.delete(id:Int)
+GET     /listbyid/:id               controllers.AwardController.listById(id:Int)
+GET     /addaward                   controllers.AwardController.add
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count

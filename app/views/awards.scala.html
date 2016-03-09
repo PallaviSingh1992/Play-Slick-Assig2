@@ -1,4 +1,4 @@
-@(list:List[Award])
+@(list:List[Award],awardForm:Form[Award])(implicit msg:Messages)
 
 @views.html.main("awards"){
 <div class="container">
@@ -43,21 +43,18 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1"></span>
-                        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-                    </div>
 
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Recipient's username" aria-describedby="basic-addon2">
-                        <span class="input-group-addon" id="basic-addon2">example.com</span>
-                    </div>
-                    <br><br>
+                        @helper.form(action=routes.AwardController.add()){
+                            @helper.inputText(awardForm("id"),'_label->"Id")
+                            @helper.inputText(awardForm("name"),'_label->"Name")
+                            @helper.inputText(awardForm("details"),'_label->"Details")
+                        <button type="submit" class="btn btn-link" href="">Add</button>
+                        }
                     <button type="button" class="btn btn-warning pull-right">Action</button>
                     </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-link" href="">Add</button>
+
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
