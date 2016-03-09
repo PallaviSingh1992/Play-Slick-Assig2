@@ -8,7 +8,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
 import scala.concurrent.Future
 
-trait AssignmentTable extends UserRepo{ self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait AssignmentTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfile] =>
   import driver.api._
 
   class AssignmentTable(tag:Tag) extends Table[Assignment](tag,"assignment") {

@@ -8,7 +8,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
 import scala.concurrent.Future
 
-trait ProgLanguageTable extends UserRepo{ self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait ProgLanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfile] =>
   import driver.api._
 
   class ProgLanguageTable(tag:Tag) extends Table[ProgLanguage](tag,"proglanguage") {

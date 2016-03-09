@@ -10,7 +10,7 @@ import play.api.db.slick.HasDatabaseConfigProvider
 import slick.driver.JdbcProfile
 import scala.concurrent.Future
 
-trait AwardTable extends UserRepo{ self: HasDatabaseConfigProvider[JdbcProfile] =>
+trait AwardTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfile] =>
   import driver.api._
 
   class AwardTable(tag:Tag) extends Table[Award](tag,"award") {
