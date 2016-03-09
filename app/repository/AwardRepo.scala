@@ -1,9 +1,8 @@
 package repository
 
 
-import javax.inject.Inject
 import javax.xml.soap.Detail
-import com.google.inject.ImplementedBy
+import com.google.inject.{Inject, ImplementedBy}
 import models.Award
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
@@ -25,8 +24,9 @@ trait AwardTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfile]
   val awardTableQuery = TableQuery[AwardTable]
 }
 
-@ImplementedBy(classOf[AwardImpl])
-trait  AwardRepo extends AwardTable {self: HasDatabaseConfigProvider[JdbcProfile] =>
+//@ImplementedBy(classOf[AwardImpl])
+class  AwardRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends AwardTable with HasDatabaseConfigProvider[JdbcProfile] {
+
   import driver.api._
 
   def insert(id:Int,name:String,details:String): Future[Int] = db.run { awardTableQuery += Award(id,name,details) }
@@ -39,5 +39,5 @@ trait  AwardRepo extends AwardTable {self: HasDatabaseConfigProvider[JdbcProfile
 
 }
 
-class AwardImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends AwardTable with HasDatabaseConfigProvider[JdbcProfile]
+//class AwardImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends AwardTable with HasDatabaseConfigProvider[JdbcProfile]
 

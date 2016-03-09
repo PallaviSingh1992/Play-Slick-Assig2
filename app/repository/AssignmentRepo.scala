@@ -24,8 +24,9 @@ trait AssignmentTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcPro
   val assignmentTableQuery = TableQuery[AssignmentTable]
 }
 
-@ImplementedBy(classOf[AssignmentImpl])
-trait  AssignmentRepo extends AssignmentTable {self: HasDatabaseConfigProvider[JdbcProfile] =>
+//@ImplementedBy(classOf[AssignmentImpl])
+class  AssignmentRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends AssignmentTable with HasDatabaseConfigProvider[JdbcProfile] {
+
   import driver.api._
 
   def insert(id:Int,name:String,marks:Int,remarks:String): Future[Int] = db.run { assignmentTableQuery += Assignment(id,name,marks,remarks) }
@@ -38,4 +39,4 @@ trait  AssignmentRepo extends AssignmentTable {self: HasDatabaseConfigProvider[J
 
 }
 
-class AssignmentImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]
+//class AssignmentImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]

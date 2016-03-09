@@ -22,8 +22,9 @@ trait ProgLanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcP
   val progLanguageTableQuery = TableQuery[ProgLanguageTable]
 }
 
-@ImplementedBy(classOf[ProgLanguageImpl])
-trait  ProgLanguageRepo extends ProgLanguageTable {self: HasDatabaseConfigProvider[JdbcProfile] =>
+//@ImplementedBy(classOf[ProgLanguageImpl])
+class  ProgLanguageRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends ProgLanguageTable with HasDatabaseConfigProvider[JdbcProfile] {
+
   import driver.api._
 
   def insert(id:Int,name:String): Future[Int] = db.run { progLanguageTableQuery += ProgLanguage(id,name) }
@@ -36,4 +37,4 @@ trait  ProgLanguageRepo extends ProgLanguageTable {self: HasDatabaseConfigProvid
 
 }
 
-class ProgLanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends ProgLanguageTable with HasDatabaseConfigProvider[JdbcProfile]
+//class ProgLanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends ProgLanguageTable with HasDatabaseConfigProvider[JdbcProfile]

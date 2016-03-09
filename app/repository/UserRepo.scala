@@ -1,8 +1,6 @@
 package repository
 
-
-import javax.inject.Inject
-import com.google.inject.ImplementedBy
+import com.google.inject.{Inject, ImplementedBy}
 import models.User
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
@@ -25,8 +23,9 @@ trait UserTable  { self: HasDatabaseConfigProvider[JdbcProfile] =>
   val userTableQuery = TableQuery[UserTable]
 }
 
-@ImplementedBy(classOf[UserImpl])
-trait  UserRepo extends UserTable {self: HasDatabaseConfigProvider[JdbcProfile] =>
+//@ImplementedBy(classOf[UserImpl])
+class  UserRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends UserTable with HasDatabaseConfigProvider[JdbcProfile] {
+
   import driver.api._
 
   def insert(id:Int,name:String,email:String,mobile:String,password: String): Future[Int] = db.run { userTableQuery += User(id,name,email,mobile,password) }
@@ -39,4 +38,4 @@ trait  UserRepo extends UserTable {self: HasDatabaseConfigProvider[JdbcProfile] 
 
 }
 
-class UserImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends UserTable with HasDatabaseConfigProvider[JdbcProfile]
+//class UserImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends UserTable with HasDatabaseConfigProvider[JdbcProfile]

@@ -23,18 +23,29 @@ trait LanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfi
   val languageTableQuery = TableQuery[LanguageTable]
 }
 
-@ImplementedBy(classOf[LanguageImpl])
-trait  LanguageRepo extends LanguageTable {self: HasDatabaseConfigProvider[JdbcProfile] =>
+//@ImplementedBy(classOf[LanguageImpl])
+class  LanguageRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile] {
+
   import driver.api._
 
-  def insert(id:Int,name:String,fluency:String): Future[Int] = db.run { languageTableQuery += Language(id,name,fluency) }
+  def insert(id: Int, name: String, fluency: String): Future[Int] = db.run {
+    languageTableQuery += Language(id, name, fluency)
+  }
 
-  def update(id:Int,name:String,fluency:String): Future[Int] = db.run { languageTableQuery.filter(_.id === id).update(Language(id,name,fluency)) }
+  def update(id: Int, name: String, fluency: String): Future[Int] = db.run {
+    languageTableQuery.filter(_.id === id).update(Language(id, name, fluency))
+  }
 
-  def delete(id: Int): Future[Int] = db.run { languageTableQuery.filter(_.id === id).delete }
+  def delete(id: Int): Future[Int] = db.run {
+    languageTableQuery.filter(_.id === id).delete
+  }
 
-  def getAll(): Future[List[Language]] = db.run { languageTableQuery.to[List].result }
+  def getAll(): Future[List[Language]] = db.run {
+    val test=languageTableQuery.to[List]
+    println(test)
+    test.result
+  }
 
 }
 
-class LanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]
+//class LanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]
