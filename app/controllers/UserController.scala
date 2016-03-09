@@ -34,6 +34,8 @@ class UserController @Inject()(service:UserServiceApi) extends Controller {
     }
   }
 
+
+
   def add = Action.async { implicit request =>
     userForm.bindFromRequest.fold(
       // if any error in submitted data
