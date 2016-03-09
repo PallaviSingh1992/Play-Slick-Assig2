@@ -5,35 +5,27 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Controller, Action}
 import services.LanguageServiceApi
-import play.api.libs.concurrent.Execution.defaultContext
 import scala.concurrent.ExecutionContext.Implicits.global
+import models.Language
 
-case class Lang(id:Int,name:String,fluency:String)
+//case class Lang(id:Int,name:String,fluency:String)
 
-class LanguageController @Inject()(service:LanguageServiceApi) extends Controller{
+class LanguageController @Inject()(service:LanguageServiceApi) extends Controller {
 
 
-  val langForm=Form(
-    mapping (
-      "id"->Int,
-      "name"->nonEmptyText,
+  val langForm = Form(
+    mapping(
+      "id" -> number(),
+      "name" ->nonEmptyText,
       "fluency"->nonEmptyText
-    )(Lang.apply)(Lang.unapply)
+    )(Language.apply)(Language.unapply)
   )
-
-  def list=Action.async{implicit request=>
+  def list = Action.async { implicit request =>
     val list = service.getLanguage()
 
-    list.map{
-      list => Ok(""+list)
+    list.map {
+      list => Ok("" + list)
     }
 
   }
-
-
-
-
-
-
 }
-
