@@ -14,7 +14,7 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
 
   val langForm = Form(
     mapping(
-      "id" -> number(),
+      "id" -> number,
       "name" ->nonEmptyText,
       "fluency"->nonEmptyText
     )(Language.apply)(Language.unapply)

@@ -8,7 +8,7 @@ import repository.UserRepo
 import scala.concurrent.Future
 
 @ImplementedBy(classOf[UserService])
-trait userServiceApi{
+trait UserServiceApi{
   def insertUser(id:Int,name:String,email:String,mobile:String,password:String):Future[Int]
   def updateUser(id:Int,name:String,email:String,mobile:String,password:String):Future[Int]
   def deleteUser(id:Int):Future[Int]
