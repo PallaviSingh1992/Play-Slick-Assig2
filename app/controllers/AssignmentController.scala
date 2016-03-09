@@ -28,6 +28,12 @@ class AssignmentController @Inject()(service:AssignmentServiceApi) extends Contr
     }
   }
 
+  def listById(id:Int)=Action.async{implicit request=>
+    service.getAssignment.map {
+      list => Ok("" + list.filter(_.id==id))
+    }
+  }
+
   def add=Action.async{implicit request =>
     assigForm.bindFromRequest.fold(
       // if any error in submitted data
