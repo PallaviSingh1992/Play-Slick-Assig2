@@ -23,7 +23,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
   def list = Action.async { implicit request =>
     val list = service.getAward
     list.map {
-      list => Ok("" + list)
+      list => Ok(views.html.awards(list))
     }
   }
   def listById(id:Int)=Action.async{implicit request=>
