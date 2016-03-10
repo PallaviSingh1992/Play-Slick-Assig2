@@ -31,7 +31,7 @@
                 </div>
                 <div class="modal-body"><p>
                         @helper.form(action=routes.LanguageController.add()){
-                        @helper.inputText(awardForm("id"),'_label->"Id",'disabled->"true")
+                        @helper.inputText(awardForm("id"),'_label->"Id")
                         @helper.inputText(awardForm("name"),'_label->"Name")
                         @helper.inputText(awardForm("fluency"),'_label->"Details")
                         <button type="submit" class="btn btn-link" href="">Add</button>

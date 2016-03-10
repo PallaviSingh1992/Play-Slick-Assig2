@@ -8,8 +8,7 @@ import play.api.mvc.{Action, Controller}
 import services.AwardServiceApi
 import play.api.i18n.Messages.Implicits._
 import play.api.Play.current
-
-import scala.concurrent.ExecutionContext.Implicits.global
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import scala.concurrent.Future
 
 

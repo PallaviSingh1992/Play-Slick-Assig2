@@ -7,8 +7,7 @@ import play.api.data.Forms._
 import play.api.mvc.{Action, Controller}
 import services.ProgLanguageApi
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
-
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 class ProgLanguageController @Inject()(service:ProgLanguageApi) extends Controller {
   val progLangForm = Form(

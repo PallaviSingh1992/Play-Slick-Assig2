@@ -6,7 +6,7 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Controller, Action}
 import services.LanguageServiceApi
-import scala.concurrent.ExecutionContext.Implicits.global
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import scala.concurrent.Future
 import play.api.i18n.Messages.Implicits._
 import play.api.Play.current
