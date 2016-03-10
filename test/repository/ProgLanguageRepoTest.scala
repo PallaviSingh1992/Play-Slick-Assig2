@@ -26,12 +26,6 @@ class ProgLanguageRepoTest extends Specification{
       response===1
     }
 
-    "delete programming language records" in new WithApplication() {
-
-      val res=plangRepo.delete(1)
-      val response=Await.result(res,Duration.Inf)
-      response === 1
-    }
 
     "update programming language records" in new WithApplication(){
       val res=plangRepo.update(1,"java")
@@ -41,7 +35,7 @@ class ProgLanguageRepoTest extends Specification{
     }
 
     "delete programming language record" in new WithApplication() {
-      val res=plangRepo.delete(1)
+      val res=plangRepo.delete("c++")
       val response=Await.result(res,Duration.Inf)
       response===1
     }

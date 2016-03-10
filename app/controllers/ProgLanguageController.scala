@@ -56,9 +56,10 @@ class ProgLanguageController @Inject()(service:ProgLanguageApi) extends Controll
 
   }
 
-  def delete(id: Int) = Action.async { implicit request =>
-    service.deleteProg(id: Int) map { res =>
-      Redirect(routes.ProgLanguageController.list())
+  def delete(name:String) = Action.async { implicit request =>
+    val id:Int=request.session.get("id").get.toInt
+    service.deleteProg(name) map { res =>
+      Redirect(routes.AwardController.listById)
     }
   }
 

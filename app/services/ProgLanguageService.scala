@@ -10,7 +10,7 @@ import scala.concurrent.Future
 trait ProgLanguageApi{
   def insertProg(id:Int,name:String): Future[Int]
   def updateProg(id:Int,name:String): Future[Int]
-  def deleteProg(id:Int):Future[Int]
+  def deleteProg(name:String):Future[Int]
   def getProg():Future[List[ProgLanguage]]
 }
 
@@ -24,8 +24,8 @@ class ProgLanguageService @Inject()(progLanguage:ProgLanguageRepo) extends ProgL
     progLanguage.update(id,name)
   }
 
-  def deleteProg(id:Int):Future[Int]={
-    progLanguage.delete(id)
+  def deleteProg(name:String):Future[Int]={
+    progLanguage.delete(name)
   }
 
   def getProg():Future[List[ProgLanguage]]={

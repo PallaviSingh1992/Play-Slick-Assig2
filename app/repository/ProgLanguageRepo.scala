@@ -31,7 +31,7 @@ class  ProgLanguageRepo @Inject() (protected val dbConfigProvider: DatabaseConfi
 
   def update(id:Int,name:String): Future[Int] = db.run { progLanguageTableQuery.filter(_.id === id).update(ProgLanguage(id,name)) }
 
-  def delete(id: Int): Future[Int] = db.run { progLanguageTableQuery.filter(_.id === id).delete }
+  def delete(name: String): Future[Int] = db.run { progLanguageTableQuery.filter(_.name === name).delete }
 
   def getAll(): Future[List[ProgLanguage]] = db.run { progLanguageTableQuery.to[List].result }
 
