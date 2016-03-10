@@ -10,7 +10,6 @@ import play.api.test._
 import play.api.test.Helpers._
 import services.UserServiceApi
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
-
 import scala.concurrent.Future
 
 @RunWith(classOf[JUnitRunner])
