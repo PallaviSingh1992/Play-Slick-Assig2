@@ -5,13 +5,13 @@
 # An example controller showing a sample home page
 GET     /                           controllers.LoginController.getLogin
 GET     /login                      controllers.LoginController.login
-
+GET     /home                       controllers.HomeController.home
 
 GET     /list                       controllers.UserController.list
 
 
 GET     /listassign                 controllers.AssignmentController.list
-GET     /listassigid/:id            controllers.AssignmentController.listById(id:Int)
+GET     /listassigid                controllers.AssignmentController.listById
 
 
 

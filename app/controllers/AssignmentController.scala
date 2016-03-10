@@ -6,10 +6,10 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Action, Controller}
 import services.AssignmentServiceApi
-import scala.concurrent.ExecutionContext.Implicits.global
-
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import scala.concurrent.Future
-
+import play.api.i18n.Messages.Implicits._
+import play.api.Play.current
 
 class AssignmentController @Inject()(service:AssignmentServiceApi) extends Controller {
   val assigForm = Form(
@@ -29,13 +29,13 @@ class AssignmentController @Inject()(service:AssignmentServiceApi) extends Contr
     }
   }
 
-  def listById(id:Int)=Action.async{implicit request=>
-    service.getAssignment.map {
-      list => Ok("" + list.filter(_.id==id))
+  def listById=Action.async { implicit request =>
+    val id=request.session.get("id").get.toInt
+    service.getAssignmentById(id).map{ list => Ok(views.html.assignment(list.toList, assigForm))
     }
   }
 
-  def add=Action.async{implicit request =>
+  /*def add=Action.async{implicit request =>
     assigForm.bindFromRequest.fold(
       // if any error in submitted data
       errorForm => Future.successful(Ok("success")),
@@ -64,6 +64,6 @@ class AssignmentController @Inject()(service:AssignmentServiceApi) extends Contr
       Redirect(routes.AssignmentController.list())
     }
   }
-
+*/
 
 }

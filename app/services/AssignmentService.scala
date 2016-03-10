@@ -12,6 +12,7 @@ trait AssignmentServiceApi{
   def updateAssignment(id:Int,name:String,marks:Int,remarks:String):Future[Int]
   def deleteAssignment(id:Int):Future[Int]
   def getAssignment:Future[List[Assignment]]
+  def getAssignmentById(id:Int):Future[Seq[Assignment]]
 }
 
 class AssignmentService @Inject()(assignment:AssignmentRepo) extends AssignmentServiceApi{
@@ -30,5 +31,9 @@ class AssignmentService @Inject()(assignment:AssignmentRepo) extends AssignmentS
 
   def getAssignment:Future[List[Assignment]]={
     assignment.getAll()
+  }
+
+  def getAssignmentById(id:Int):Future[Seq[Assignment]]= {
+    assignment.getAssignment(id)
   }
 }

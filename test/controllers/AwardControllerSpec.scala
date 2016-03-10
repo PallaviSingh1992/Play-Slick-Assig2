@@ -27,11 +27,10 @@ class AwardControllerSpec extends  PlaySpecification with Mockito{
       status(res) must equalTo(OK)
     }
 
-
     "add awards" in new WithApplication() {
 
       when(service.insertAward(1,"best speaker","zonal level")).thenReturn(Future(1))
-      val res=call(controller.add,FakeRequest(GET,"/addaward"))
+      val res=call(controller.add,FakeRequest(GET,"/addaward").withSession("id"->"1"))
       status(res) must equalTo(OK)
     }
 

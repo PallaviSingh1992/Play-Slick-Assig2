@@ -37,6 +37,9 @@ class  AssignmentRepo @Inject() (protected val dbConfigProvider: DatabaseConfigP
 
   def getAll(): Future[List[Assignment]] = db.run { assignmentTableQuery.to[List].result }
 
+  def getAssignment(id:Int): Future[Seq[Assignment]] = {
+    db.run(assignmentTableQuery.filter(_.id === id).result)
+  }
+
 }
 
-//class AssignmentImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]
