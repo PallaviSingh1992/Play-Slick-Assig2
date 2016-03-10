@@ -5,20 +5,39 @@
 # An example controller showing a sample home page
 GET     /                           controllers.LoginController.getLogin
 GET     /login                      controllers.LoginController.login
+
+
 GET     /list                       controllers.UserController.list
+
+
 GET     /listassign                 controllers.AssignmentController.list
-GET     /listaward                  controllers.AwardController.list
-GET     /listlang                   controllers.LanguageController.list
-GET     /listprog                   controllers.ProgLanguageController.list
 GET     /listassigid/:id               controllers.AssignmentController.listById(id:Int)
-GET     /listawardid/:id               controllers.AwardController.listById(id:Int)
-GET     /listlangid/:id               controllers.LanguageController.listById(id:Int)
-GET     /listprogid/:id               controllers.ProgLanguageController.listById(id:Int)
-#GET     /listbyid/:id               controllers.UserController.listById(id:Int)
-GET     /deleteaward/:name                controllers.AwardController.delete(name:String)
+
+
+
+GET     /listaward                  controllers.AwardController.list
+GET     /listawardid/:id            controllers.AwardController.listById(id:Int)
+GET     /deleteaward/:name          controllers.AwardController.delete(name:String)
 GET     /listbyid/:id               controllers.AwardController.listById(id:Int)
 GET     /addaward                   controllers.AwardController.add
 GET     /update                     controllers.AwardController.update
+
+
+
+GET     /listlang                   controllers.LanguageController.list
+GET     /listlangid/:id             controllers.LanguageController.listById(id:Int)
+
+
+
+
+GET     /listprog                   controllers.ProgLanguageController.list
+GET     /listprogid/:id             controllers.ProgLanguageController.listById(id:Int)
+
+
+
+
+
+
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
