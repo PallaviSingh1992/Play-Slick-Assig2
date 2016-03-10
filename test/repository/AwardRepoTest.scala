@@ -27,6 +27,18 @@ class AwardRepoTest extends Specification{
       response===1
     }
 
+    "update award records" in new WithApplication{
+      val res=awardRepo.update(1,"best singer","school level")
+      val response=Await.result(res,Duration.Inf)
+      response===0
+    }
+
+    "delete award records" in new WithApplication() {
+      val res=awardRepo.delete("best dancer")
+      val response=Await.result(res,Duration.Inf)
+      response===0
+    }
+
 
   }
 }
