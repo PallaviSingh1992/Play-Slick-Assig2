@@ -34,7 +34,7 @@ class UserRepoTest extends Specification {
     }
 
     "delete student record" in new WithApplication{
-      val res=userRepo.delete(3)
+      val res=userRepo.delete(2)
       val response=Await.result(res,Duration.Inf)
       response ===1
     }

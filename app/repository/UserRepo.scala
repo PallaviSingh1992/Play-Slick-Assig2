@@ -47,4 +47,4 @@ class  UserRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvide
 
 }
 
-//class UserImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends UserTable with HasDatabaseConfigProvider[JdbcProfile]
+

@@ -56,10 +56,5 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
     )
   }
 
-//  def account=Action { request =>
-//    request.session.get("email").map { email => Ok(views.html.account(email)) }.getOrElse {
-//      Unauthorized("You are not Logged In.")
-//    }
-//  }
 
 }

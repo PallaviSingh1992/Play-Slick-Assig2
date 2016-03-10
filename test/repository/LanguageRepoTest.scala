@@ -22,9 +22,8 @@ class LanguageRepoTest extends Specification{
     }
 
     "insert language records" in new WithApplication() {
-      val res=langRepo.insert(4,"french","basic")
+      val res=langRepo.insert(1,"french","basic")
       val response=Await.result(res,Duration.Inf)
-      langRepo.delete(4)
       response===1
     }
 
