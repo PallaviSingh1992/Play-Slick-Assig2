@@ -45,7 +45,7 @@
                     <p>
 
                         @helper.form(action=routes.AwardController.add()){
-                            @helper.inputText(awardForm("id"),'_label->"Id")
+                            @helper.inputText(awardForm("id"),'_label->"Id",'disabled->"true")
                             @helper.inputText(awardForm("name"),'_label->"Name")
                             @helper.inputText(awardForm("details"),'_label->"Details")
                         <button type="submit" class="btn btn-link" href="">Add</button>
@@ -72,7 +72,6 @@
                         </div>
                         <div class="modal-body">
                             <p>
-
                                 @helper.form(action=routes.AwardController.update()){
                                 @helper.inputText(awardForm("id"),'_label->"Id")
                                 @helper.inputText(awardForm("name"),'_label->"Name")

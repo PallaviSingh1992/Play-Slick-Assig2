@@ -28,7 +28,8 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
     }
   }
 
-  def listById(id:Int)=Action.async { implicit request =>
+  def listById=Action.async { implicit request =>
+    val id=request.session.get("id").get.toInt
     service.getLanguageById(id).map{ list => Ok(views.html.language(list.toList, langForm))
     }
   }
@@ -40,7 +41,7 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
       data => {
         val id:Int=request.session.get("id").get.toInt
         service.insertLanguage(id,data.name,data.fluency).map { res =>
-          Redirect(routes.LanguageController.listById(id))
+          Redirect(routes.LanguageController.listById)
         }
       })
   }
@@ -49,7 +50,7 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
   def delete(name:String) = Action.async { implicit request =>
     val id:Int=request.session.get("id").get.toInt
     service.deleteLanguage(name) map { res =>
-      Redirect(routes.LanguageController.listById(id))
+      Redirect(routes.LanguageController.listById)
     }
   }
 
@@ -60,7 +61,7 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
       data => {
         val id:Int=request.session.get("id").get.toInt
         service.updateLanguage(data.id,data.name,data.fluency).map(res =>
-          Redirect(routes.LanguageController.listById(id))
+          Redirect(routes.LanguageController.listById)
         )
       })
 

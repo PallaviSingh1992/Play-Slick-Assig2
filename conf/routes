@@ -24,8 +24,7 @@ GET     /update                     controllers.AwardController.update
 
 
 
-GET     /listlang                   controllers.LanguageController.list
-GET     /listlangid/:id             controllers.LanguageController.listById(id:Int)
+GET     /listlangid             controllers.LanguageController.listById
 GET     /deletelang/:name          controllers.LanguageController.delete(name:String)
 GET     /addlang                   controllers.LanguageController.add
 GET     /update                     controllers.LanguageController.update
