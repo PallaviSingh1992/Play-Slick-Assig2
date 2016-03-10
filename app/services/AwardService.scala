@@ -11,9 +11,9 @@ import scala.concurrent.Future
 trait AwardServiceApi{
   def insertAward(id:Int,name:String,details:String):Future[Int]
   def updateAward(id:Int,name:String,details:String):Future[Int]
-  def deleteAward(id:Int):Future[Int]
+  def deleteAward(name:String):Future[Int]
   def getAward:Future[List[Award]]
-  def getAwardById(id:Int):Future[Option[Award]]
+  def getAwardById(id:Int):Future[Seq[Award]]
 
 }
 
@@ -27,15 +27,15 @@ class AwardService @Inject()(award:AwardRepo) extends AwardServiceApi{
     award.update(id,name,details)
   }
 
-  def deleteAward(id:Int):Future[Int]={
-    award.delete(id)
+  def deleteAward(name:String):Future[Int]={
+    award.delete(name)
   }
 
   def getAward:Future[List[Award]]={
     award.getAll()
   }
 
-  def getAwardById(id:Int):Future[Option[Award]]={
+  def getAwardById(id:Int):Future[Seq[Award]]={
     award.getAward(id)
   }
 
