@@ -15,5 +15,8 @@ INSERT INTO "award" values(2,'best programmer','school level');
 CREATE TABLE "language"  ("id" int,"name" varchar(200) ,"fluency" varchar(200));
 INSERT INTO "language" values(1,'hindi','advanced');
 
+CREATE TABLE "proglanguage"  ("id" int,"name" varchar(200));
+INSERT INTO "proglanguage" values(1,'c++');
+
 #---!Downs
 DROP TABLE "user";

@@ -36,13 +36,14 @@ class  AwardRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvid
 
   def update(id:Int,name:String,details:String): Future[Int] = db.run { awardTableQuery.filter(_.name === name).update(Award(id,name,details)) }
 
-  def delete(id: Int): Future[Int] = db.run { awardTableQuery.filter(_.id === id).delete }
+  def delete(name:String): Future[Int] = db.run { awardTableQuery.filter(_.name === name).delete }
 
   def getAll(): Future[List[Award]] = db.run { awardTableQuery.to[List].result }
 
-  def getAward(id:Int): Future[Option[Award]] = {
+  def getAward(id:Int): Future[Seq[Award]] = {
 
-    db.run(awardTableQuery.filter(_.id === id).result.headOption)
+    db.run(awardTableQuery.filter(_.id === id).result)
+
 
   }
 
