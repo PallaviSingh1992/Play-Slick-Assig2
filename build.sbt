@@ -22,6 +22,7 @@ libraryDependencies ++= Seq(
   specs2 % Test
 )
 
+coverageExcludedPackages :="<empty>;router\\..*;"
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 

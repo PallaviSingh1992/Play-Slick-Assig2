@@ -35,35 +35,5 @@ class AssignmentController @Inject()(service:AssignmentServiceApi) extends Contr
     }
   }
 
-  /*def add=Action.async{implicit request =>
-    assigForm.bindFromRequest.fold(
-      // if any error in submitted data
-      errorForm => Future.successful(Ok("success")),
-      data => {
-        service.insertAssignment(data.id,data.name,data.marks,data.remarks).map(res =>
-          Redirect(routes.AssignmentController.list())
-        )
-      })
-
-  }
-
-  def update=Action.async{implicit request =>
-    assigForm.bindFromRequest.fold(
-      // if any error in submitted data
-      errorForm => Future.successful(Ok("success")),
-      data => {
-        service.updateAssignment(data.id,data.name,data.marks,data.remarks).map(res =>
-          Redirect(routes.AssignmentController.list())
-        )
-      })
-
-  }
-
-  def delete(id: Int) = Action.async { implicit request =>
-    service.deleteAssignment(id: Int) map { res =>
-      Redirect(routes.AssignmentController.list())
-    }
-  }
-*/
 
 }

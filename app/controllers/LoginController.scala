@@ -41,7 +41,7 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
               if(isuser.get.password == userData.password)
                 {
 
-                Redirect(routes.HomeController.home).withSession("id"->(isuser.get.id).toString,"email"->isuser.get.email)
+                Redirect(routes.LoginController.home).withSession("id"->(isuser.get.id).toString,"email"->isuser.get.email)
                 }
               else {
                   Redirect(routes.LoginController.getLogin)
@@ -56,5 +56,8 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
     )
   }
 
+  def home=Action{implicit request=>
+    Ok(views.html.home())
+  }
 
 }

@@ -1,3 +1,4 @@
+/*
 package controllers
 
 import javax.inject._
@@ -23,8 +24,7 @@ class HomeController @Inject()(ass:AssignmentRepo) extends Controller {
    // Ok(views.html.awards())
   }
 
-  def home=Action{implicit request=>
-  Ok(views.html.home())
-  }
+
 
 }
+*/

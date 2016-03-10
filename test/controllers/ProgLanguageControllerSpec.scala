@@ -27,8 +27,26 @@ class ProgLanguageControllerSpec extends PlaySpecification with Mockito {
       when(service.getProg()).thenReturn(Future(List(ProgLanguage(1,"scala"))))
 
       val res = call(controller.list, FakeRequest(GET, "/listprog"))
-
       status(res) must equalTo(OK)
+    }
+
+    "list languages by id" in new WithApplication() {
+      when(service.getProgId(1)).thenReturn(Future(List(ProgLanguage(1,"scala"))))
+      val res = call(controller.list, FakeRequest(GET, "/listprog").withSession("id"->"1"))
+      status(res) must equalTo(OK)
+    }
+
+    "add new language" in new WithApplication() {
+      when(service.insertProg(1,"scala")).thenReturn(Future(1))
+      val res=call(controller.add,FakeRequest(GET,"/add").withSession("id"->"1"))
+      status(res) must equalTo(OK)
+    }
+
+    "delete record by id" in new WithApplication() {
+
+      when(service.deleteProg("scala")).thenReturn(Future(1))
+      val res=call(controller.delete("scala"),FakeRequest(GET,"/deleteprog"+"/scala").withSession("id"->"1"))
+      status(res) must equalTo(SEE_OTHER)
     }
   }
 }

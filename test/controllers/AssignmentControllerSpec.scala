@@ -36,6 +36,8 @@ class AssignmentControllerSpec extends PlaySpecification with Mockito {
 
       status(res) must equalTo(OK)
     }
+
+
   }
 
 }

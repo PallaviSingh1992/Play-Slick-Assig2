@@ -1,3 +1,4 @@
+/*
 package filters
 
 import akka.stream.Materializer
@@ -31,3 +32,4 @@ class ExampleFilter @Inject()(
   }
 
 }
+*/

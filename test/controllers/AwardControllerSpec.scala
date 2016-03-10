@@ -34,12 +34,25 @@ class AwardControllerSpec extends  PlaySpecification with Mockito{
       status(res) must equalTo(OK)
     }
 
-
     "Update awards" in new WithApplication() {
 
       when(service.updateAward(1,"best speaker","zonal")).thenReturn(Future(1))
       val res=call(controller.update,FakeRequest(GET,"/update"))
       status(res) must equalTo(OK)
+    }
+
+    "list awards by id" in new WithApplication() {
+
+      when(service.getAwardById(1)).thenReturn(Future(List(Award(1,"best coder","zonal level"))))
+      val res=call(controller.list,FakeRequest(GET,"/listbyid").withFormUrlEncodedBody("id"->"1","name"->"best coder","details"->"zonal level").withSession("id"->"1"))
+      status(res) must equalTo(OK)
+    }
+
+    "delete award by id" in new WithApplication() {
+
+      when(service.deleteAward("best coder")).thenReturn(Future(1))
+      val res=call(controller.delete("best coder"),FakeRequest(GET,"/deleteaward"+"/best coder").withSession("id"->"1"))
+      status(res) must equalTo(SEE_OTHER)
     }
   }
 }

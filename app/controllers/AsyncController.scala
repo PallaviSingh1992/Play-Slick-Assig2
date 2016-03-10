@@ -1,3 +1,4 @@
+/*
 package controllers
 
 import akka.actor.ActorSystem
@@ -39,3 +40,4 @@ class AsyncController @Inject() (actorSystem: ActorSystem)(implicit exec: Execut
   }
 
 }
+*/

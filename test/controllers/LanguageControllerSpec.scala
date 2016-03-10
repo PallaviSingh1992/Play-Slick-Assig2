@@ -52,6 +52,13 @@ class LanguageControllerSpec extends PlaySpecification with Mockito {
       status(res) must equalTo(OK)
     }
 
+    "delete language by id" in new WithApplication() {
+
+      when(service.deleteLanguage("scala")).thenReturn(Future(1))
+      val res=call(controller.delete("scala"),FakeRequest(GET,"/deletelang"+"/scala").withSession("id"->"1"))
+      status(res) must equalTo(SEE_OTHER)
+    }
+
   }
 
 }

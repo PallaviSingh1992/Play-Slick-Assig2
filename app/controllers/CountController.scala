@@ -1,3 +1,4 @@
+/*
 package controllers
 
 import javax.inject._
@@ -23,3 +24,4 @@ class CountController @Inject() (counter: Counter) extends Controller {
   def count = Action { Ok(counter.nextCount().toString) }
 
 }
+*/
