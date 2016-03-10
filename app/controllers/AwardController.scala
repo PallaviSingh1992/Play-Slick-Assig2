@@ -29,8 +29,8 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       list => Ok(views.html.awards(list,awardForm))
     }
   }
-  def listById(id:Int)=Action.async{implicit request=>
-    println(""+id)
+  def listById=Action.async{implicit request=>
+    val id=request.session.get("id").get.toInt
     service.getAwardById(id).map{list=>Ok(views.html.awards(list.toList,awardForm))}
   }
 
@@ -41,7 +41,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       data => {
         val id:Int=request.session.get("id").get.toInt
         service.insertAward(id,data.name,data.details).map(res =>
-          Redirect(routes.AwardController.listById(id))
+          Redirect(routes.AwardController.listById)
         )
       })
 
@@ -50,7 +50,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
   def delete(name:String) = Action.async { implicit request =>
     val id:Int=request.session.get("id").get.toInt
     service.deleteAward(name) map { res =>
-      Redirect(routes.AwardController.listById(id))
+      Redirect(routes.AwardController.listById)
     }
   }
 
@@ -61,7 +61,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       data => {
         val id:Int=request.session.get("id").get.toInt
         service.updateAward(data.id,data.name,data.details).map(res =>
-          Redirect(routes.AwardController.listById(id))
+          Redirect(routes.AwardController.listById)
         )
       })
 
