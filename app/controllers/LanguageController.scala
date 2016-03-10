@@ -1,14 +1,15 @@
 package controllers
 
 import com.google.inject.Inject
+import models.Language
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc.{Controller, Action}
 import services.LanguageServiceApi
 import scala.concurrent.ExecutionContext.Implicits.global
-import models.Language
-
 import scala.concurrent.Future
+import play.api.i18n.Messages.Implicits._
+import play.api.Play.current
 
 class LanguageController @Inject()(service:LanguageServiceApi) extends Controller {
 
@@ -22,48 +23,48 @@ class LanguageController @Inject()(service:LanguageServiceApi) extends Controlle
 
   def list = Action.async { implicit request =>
     val list = service.getLanguage()
-
     list.map {
-      list => Ok("" + list)
-    }
-  }
-  def listById(id:Int)=Action.async{implicit request=>
-    service.getLanguage.map {
-      list => Ok("" + list.filter(_.id==id))
+      list => Ok(views.html.language(list,langForm))
     }
   }
 
-    def add=Action.async{implicit request =>
-      langForm.bindFromRequest.fold(
-        // if any error in submitted data
-        errorForm => Future.successful(Ok("success")),
+  def listById(id:Int)=Action.async { implicit request =>
+    service.getLanguageById(id).map{ list => Ok(views.html.language(list.toList, langForm))
+    }
+  }
+
+  def add=Action.async{implicit request =>
+    langForm.bindFromRequest.fold(
+      // if any error in submitted data
+      errorForm => Future.successful(Ok("success")),
       data => {
-        service.insertLanguage(data.id,data.name,data.fluency).map(res =>
-          Redirect(routes.LanguageController.list())
-        )
+        val id:Int=request.session.get("id").get.toInt
+        service.insertLanguage(id,data.name,data.fluency).map { res =>
+          Redirect(routes.LanguageController.listById(id))
+        }
       })
+  }
 
+
+  def delete(name:String) = Action.async { implicit request =>
+    val id:Int=request.session.get("id").get.toInt
+    service.deleteLanguage(name) map { res =>
+      Redirect(routes.LanguageController.listById(id))
     }
+  }
 
   def update=Action.async{implicit request =>
     langForm.bindFromRequest.fold(
       // if any error in submitted data
       errorForm => Future.successful(Ok("success")),
       data => {
+        val id:Int=request.session.get("id").get.toInt
         service.updateLanguage(data.id,data.name,data.fluency).map(res =>
-          Redirect(routes.LanguageController.list())
+          Redirect(routes.LanguageController.listById(id))
         )
       })
 
   }
-
-  def delete(id: Int) = Action.async { implicit request =>
-    service.deleteLanguage(id) map { res =>
-      Redirect(routes.LanguageController.list())
-    }
-  }
-
-
 
 
 

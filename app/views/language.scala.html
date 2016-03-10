@@ -1,8 +1,9 @@
-@(list:List[Langauge],awardForm:Form[Language])(implicit msg:Messages)
+@(list:List[Language],awardForm:Form[Language])(implicit msg:Messages)
 
 @views.html.main("language"){
 <div class="container">
     <div class="jumbotron">
+
         <table class="table table-hover">
             <thead><tr>
                 <th>ID</th><th>Name</th><th>Fluency</th><th>Update</th><th>Delete</th>
@@ -12,7 +13,7 @@
             <tr>
                 <td>@li.id</td><td>@li.name</td><td>@li.fluency</td>
                 <td><button type="button" class="btn btn-info btn-lg " data-toggle="modal" data-target="#myUpdate">Update</button></td>
-                <td><a href="@routes.LanguageController.delete(li.id)">Delete</a></td>
+                <td><a href="@routes.LanguageController.delete(li.name)">Delete</a></td>
             </tr>
             }
             </tbody>
