@@ -23,14 +23,14 @@ class UserServiceTest extends PlaySpecification with Mockito{
     "insert user" in new WithApplication{
 
       when(service.insert(1,"himani","himani@knoldus.in","98764532","himani")).thenReturn(Future(1))
-      val res=service.insert(1,"himani","himani@knoldus.in","98764532","himani")
+      val res=controller.insertUser(1,"himani","himani@knoldus.in","98764532","himani")
       val response=Await.result(res,Duration.Inf)
       response===1
     }
 
     "update user" in new WithApplication() {
       when(service.update(1,"himani","himani@knoldus.in","98764532","himani")).thenReturn(Future(1))
-      val res=service.update(1,"himani","himani@knoldus.in","98764532","himani")
+      val res=controller.updateUser(1,"himani","himani@knoldus.in","98764532","himani")
       val response=Await.result(res,Duration.Inf)
       response===1
     }
@@ -38,7 +38,7 @@ class UserServiceTest extends PlaySpecification with Mockito{
     "delete user" in new WithApplication() {
 
       when(service.delete(1)).thenReturn(Future(1))
-      val res=service.delete(1)
+      val res=controller.deleteUser(1)
       val response=Await.result(res,Duration.Inf)
       response===1
     }
@@ -46,9 +46,9 @@ class UserServiceTest extends PlaySpecification with Mockito{
     "get user" in new WithApplication() {
 
       when(service.getUser("himani@knoldus.in")).thenReturn(Future(Option(User(1,"himani","himani@knoldus.in","22510269","himani"))))
-      val res=service.delete(1)
+      val res=controller.getUserByEmail("himani@knoldus.in")
       val response=Await.result(res,Duration.Inf)
-      response===1
+      response===Some(User(1,"himani","himani@knoldus.in","22510269","himani"))
 
     }
   }
