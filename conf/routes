@@ -11,7 +11,7 @@ GET     /list                       controllers.UserController.list
 
 
 GET     /listassign                 controllers.AssignmentController.list
-GET     /listassigid/:id               controllers.AssignmentController.listById(id:Int)
+GET     /listassigid/:id            controllers.AssignmentController.listById(id:Int)
 
 
 
@@ -26,6 +26,9 @@ GET     /update                     controllers.AwardController.update
 
 GET     /listlang                   controllers.LanguageController.list
 GET     /listlangid/:id             controllers.LanguageController.listById(id:Int)
+GET     /deletelang/:name          controllers.LanguageController.delete(name:String)
+GET     /addlang                   controllers.LanguageController.add
+GET     /update                     controllers.LanguageController.update
 
 
 

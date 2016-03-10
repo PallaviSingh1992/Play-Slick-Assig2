@@ -11,8 +11,9 @@ trait LanguageServiceApi {
 
   def insertLanguage(id: Int, name: String, fluency: String): Future[Int]
   def updateLanguage(id: Int, name: String, fluency: String): Future[Int]
-  def deleteLanguage(id: Int): Future[Int]
+  def deleteLanguage(name: String): Future[Int]
   def getLanguage(): Future[List[Language]]
+  def getLanguageById(id:Int):Future[Seq[Language]]
 }
 
 class LanguageService @Inject()(language: LanguageRepo) extends LanguageServiceApi{
@@ -25,11 +26,15 @@ class LanguageService @Inject()(language: LanguageRepo) extends LanguageServiceA
     language.update(id, name, fluency)
   }
 
-  def deleteLanguage(id: Int): Future[Int] = {
-    language.delete(id)
+  def deleteLanguage(name:String): Future[Int] = {
+    language.delete(name)
   }
 
   def getLanguage(): Future[List[Language]] = {
     language.getAll()
+  }
+
+  def getLanguageById(id:Int):Future[Seq[Language]]={
+    language.getLanguage(id)
   }
 }

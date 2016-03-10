@@ -28,24 +28,22 @@ class  LanguageRepo @Inject() (protected val dbConfigProvider: DatabaseConfigPro
 
   import driver.api._
 
-  def insert(id: Int, name: String, fluency: String): Future[Int] = db.run {
-    languageTableQuery += Language(id, name, fluency)
+  def insert(id: Int, name: String, fluency: String): Future[Int] = {
+    val insertQuery=languageTableQuery += Language(id, name, fluency)
+    db.run {insertQuery}
   }
 
-  def update(id: Int, name: String, fluency: String): Future[Int] = db.run {
-    languageTableQuery.filter(_.id === id).update(Language(id, name, fluency))
-  }
+  def update(id: Int, name: String, fluency: String): Future[Int] = db.run {languageTableQuery.filter(_.id === id).update(Language(id, name, fluency))}
 
-  def delete(id: Int): Future[Int] = db.run {
-    languageTableQuery.filter(_.id === id).delete
-  }
+  def delete(name:String): Future[Int] = db.run { languageTableQuery.filter(_.name === name).delete}
 
   def getAll(): Future[List[Language]] = db.run {
     val test=languageTableQuery.to[List]
-    println(test)
     test.result
   }
-
+  def getLanguage(id:Int): Future[Seq[Language]] = {
+    db.run(languageTableQuery.filter(_.id === id).result)
+  }
 }
 
 //class LanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]
