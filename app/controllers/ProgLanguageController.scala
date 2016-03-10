@@ -8,6 +8,8 @@ import play.api.mvc.{Action, Controller}
 import services.ProgLanguageApi
 import scala.concurrent.Future
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.i18n.Messages.Implicits._
+import play.api.Play.current
 
 class ProgLanguageController @Inject()(service:ProgLanguageApi) extends Controller {
   val progLangForm = Form(
@@ -25,9 +27,9 @@ class ProgLanguageController @Inject()(service:ProgLanguageApi) extends Controll
     }
   }
 
-  def listById(id:Int)=Action.async{implicit request=>
-    service.getProg.map {
-      list => Ok("" + list.filter(_.id==id))
+  def listById=Action.async { implicit request =>
+    val id=request.session.get("id").get.toInt
+    service.getProgId(id).map{ list => Ok(views.html.proglanguage(list.toList,progLangForm))
     }
   }
 
@@ -36,29 +38,18 @@ class ProgLanguageController @Inject()(service:ProgLanguageApi) extends Controll
       // if any error in submitted data
       errorForm => Future.successful(Ok("success")),
       data => {
-        service.insertProg(data.id,data.name).map(res =>
-          Redirect(routes.ProgLanguageController.list())
-        )
+        val id:Int=request.session.get("id").get.toInt
+        service.insertProg(id,data.name).map { res =>
+          Redirect(routes.ProgLanguageController.listById)
+        }
       })
-
   }
 
-  def update=Action.async{implicit request =>
-    progLangForm.bindFromRequest.fold(
-      // if any error in submitted data
-      errorForm => Future.successful(Ok("success")),
-      data => {
-        service.updateProg(data.id,data.name).map(res =>
-          Redirect(routes.ProgLanguageController.list())
-        )
-      })
-
-  }
 
   def delete(name:String) = Action.async { implicit request =>
     val id:Int=request.session.get("id").get.toInt
     service.deleteProg(name) map { res =>
-      Redirect(routes.AwardController.listById)
+      Redirect(routes.ProgLanguageController.listById)
     }
   }
 

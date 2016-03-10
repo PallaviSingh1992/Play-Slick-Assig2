@@ -35,6 +35,9 @@ class  ProgLanguageRepo @Inject() (protected val dbConfigProvider: DatabaseConfi
 
   def getAll(): Future[List[ProgLanguage]] = db.run { progLanguageTableQuery.to[List].result }
 
+  def getProgLanguage(id:Int): Future[Seq[ProgLanguage]] = {
+    db.run(progLanguageTableQuery.filter(_.id === id).result)
+  }
+
 }
 
-//class ProgLanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends ProgLanguageTable with HasDatabaseConfigProvider[JdbcProfile]

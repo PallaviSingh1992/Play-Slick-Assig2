@@ -12,6 +12,7 @@ trait ProgLanguageApi{
   def updateProg(id:Int,name:String): Future[Int]
   def deleteProg(name:String):Future[Int]
   def getProg():Future[List[ProgLanguage]]
+  def getProgId(id:Int):Future[Seq[ProgLanguage]]
 }
 
 class ProgLanguageService @Inject()(progLanguage:ProgLanguageRepo) extends ProgLanguageApi {
@@ -30,6 +31,10 @@ class ProgLanguageService @Inject()(progLanguage:ProgLanguageRepo) extends ProgL
 
   def getProg():Future[List[ProgLanguage]]={
     progLanguage.getAll()
+  }
+
+  def getProgId(id:Int):Future[Seq[ProgLanguage]]={
+    progLanguage.getProgLanguage(id)
   }
 
 }

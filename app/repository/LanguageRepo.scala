@@ -46,4 +46,3 @@ class  LanguageRepo @Inject() (protected val dbConfigProvider: DatabaseConfigPro
   }
 }
 
-//class LanguageImpl @Inject() (protected val dbConfigProvider: DatabaseConfigProvider) extends LanguageTable with HasDatabaseConfigProvider[JdbcProfile]

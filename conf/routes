@@ -31,8 +31,10 @@ GET     /update                     controllers.LanguageController.update
 
 
 
-GET     /listprog                   controllers.ProgLanguageController.list
-GET     /listprogid/:id             controllers.ProgLanguageController.listById(id:Int)
+GET     /listprog                   controllers.ProgLanguageController.listById
+GET     /deleteprog/:name           controllers.ProgLanguageController.delete(name:String)
+GET     /addprog                    controllers.ProgLanguageController.add
+
 
 
 
