@@ -27,6 +27,19 @@ class LanguageRepoTest extends Specification{
       response===1
     }
 
+
+    "update language records" in new WithApplication(){
+      val res=langRepo.update(1,"spansih","basic")
+      val response=Await.result(res,Duration.Inf)
+      response === 1
+    }
+
+    "delete language record" in new WithApplication() {
+      val res=langRepo.delete("hindi")
+      val response=Await.result(res,Duration.Inf)
+      response===1
+    }
+
   }
 
 }

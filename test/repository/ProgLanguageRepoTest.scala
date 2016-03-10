@@ -14,16 +14,35 @@ class ProgLanguageRepoTest extends Specification{
   def plangRepo(implicit app:Application)=Application.instanceCache[ProgLanguageRepo].apply(app)
 
   "Programming language  Repository" should {
-    "get award records" in new WithApplication {
+    "get programming language records" in new WithApplication {
       val res = plangRepo.getAll()
       val response = Await.result(res, Duration.Inf)
       response.head.id ===1
     }
 
-    "insert assignment records" in new WithApplication() {
+    "insert programming language records" in new WithApplication() {
       val res=plangRepo.insert(4,"c#")
       val response=Await.result(res,Duration.Inf)
-      plangRepo.delete(4)
+      response===1
+    }
+
+    "delete programming language records" in new WithApplication() {
+
+      val res=plangRepo.delete(1)
+      val response=Await.result(res,Duration.Inf)
+      response === 1
+    }
+
+    "update programming language records" in new WithApplication(){
+      val res=plangRepo.update(1,"java")
+      val response=Await.result(res,Duration.Inf)
+      response === 1
+
+    }
+
+    "delete programming language record" in new WithApplication() {
+      val res=plangRepo.delete(1)
+      val response=Await.result(res,Duration.Inf)
       response===1
     }
 

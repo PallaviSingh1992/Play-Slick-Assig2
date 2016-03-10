@@ -32,6 +32,14 @@ class AssignmentRepoTest extends Specification{
       val response=Await.result(res,Duration.Inf)
       response===1
     }
+
+
+    "update assignment records" in new WithApplication(){
+      val res=assigRepo.update(1,"c++",7,"can do better")
+      val response=Await.result(res,Duration.Inf)
+      response === 1
+
+    }
   }
 
 }
