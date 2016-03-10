@@ -17,7 +17,7 @@ trait AwardTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfile]
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val details= column[String]("details", O.SqlType("VARCHAR(200)"))
 
-    def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
+   /* def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)*/
     def * = (id, name,details) <>(Award.tupled, Award.unapply)
   }
 
@@ -30,9 +30,7 @@ class  AwardRepo @Inject() (protected val dbConfigProvider: DatabaseConfigProvid
   import driver.api._
 
   def insert(id:Int,name:String,details:String): Future[Int] = {
-  //  println("++++++++++>"+id+"::"+name+"++++")
     val insertQuery = awardTableQuery += Award(id,name,details)
-  //  println("==================>"+insertQuery.statements.head)
     db.run { insertQuery }
   }
 

@@ -24,7 +24,6 @@ class AwardRepoTest extends Specification{
     "insert award records" in new WithApplication() {
       val res=awardRepo.insert(4,"best orator","school level")
       val response=Await.result(res,Duration.Inf)
-      awardRepo.delete(4)
       response===1
     }
 

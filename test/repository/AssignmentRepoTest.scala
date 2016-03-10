@@ -22,15 +22,13 @@ class AssignmentRepoTest extends Specification{
     }
 
     "insert assignment records" in new WithApplication() {
-      val res=assigRepo.insert(4,"play",5,"no remark")
+      val res=assigRepo.insert(1,"slick",5,"no remark")
       val response=Await.result(res,Duration.Inf)
-      assigRepo.delete(4)
       response===1
     }
 
     "delete assignment record" in new WithApplication() {
-      assigRepo.insert(2,"play",5,"no remark")
-      val res=assigRepo.delete(2)
+      val res=assigRepo.delete(1)
       val response=Await.result(res,Duration.Inf)
       response===1
     }

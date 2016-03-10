@@ -40,15 +40,16 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       data => {
         val id:Int=request.session.get("id").get.toInt
         service.insertAward(id,data.name,data.details).map(res =>
-          Redirect(routes.AwardController.list())
+          Redirect(routes.AwardController.listById(id))
         )
       })
 
   }
 
   def delete(id: Int) = Action.async { implicit request =>
+    val id:Int=request.session.get("id").get.toInt
     service.deleteAward(id) map { res =>
-      Redirect(routes.AwardController.list())
+      Redirect(routes.AwardController.listById(id))
     }
   }
 
@@ -57,8 +58,9 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
       // if any error in submitted data
       errorForm => Future.successful(Ok("success")),
       data => {
+        val id:Int=request.session.get("id").get.toInt
         service.updateAward(data.id,data.name,data.details).map(res =>
-          Redirect(routes.AwardController.list())
+          Redirect(routes.AwardController.listById(id))
         )
       })
 
