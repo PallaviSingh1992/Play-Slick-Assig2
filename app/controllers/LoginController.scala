@@ -34,13 +34,13 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
       userData => {
         val isUser = user.getUserByEmail(userData.email)
         isUser.map{ isuser =>
-          println(""+isuser)
+
           if(isuser.isDefined)
             {
-              println(""+isuser.get.id)
+
               if(isuser.get.password == userData.password)
                 {
-                  println(""+isuser.get.id)
+
                 Redirect(routes.AwardController.listById(isuser.get.id)).withSession("id"->(isuser.get.id).toString,"email"->isuser.get.email)
                 }
               else {
