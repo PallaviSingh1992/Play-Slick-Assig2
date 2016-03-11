@@ -6,6 +6,7 @@
 GET     /                           controllers.LoginController.getLogin
 GET     /login                      controllers.LoginController.login
 GET     /home                       controllers.LoginController.home
+GET     /logout                     controllers.LoginController.logout
 
 GET     /list                       controllers.UserController.list
 
