@@ -1,5 +1,7 @@
 @(list:List[ProgLanguage],awardForm:Form[ProgLanguage])(implicit msg:Messages)
 
+<div id="showProg">
+</div>
 @views.html.main("Programming language"){
 <div class="container">
     <div class="jumbotron">
@@ -13,7 +15,12 @@
             <tr>
                 <td>@li.id</td><td>@li.name</td>
                 <td><button type="button" class="btn btn-info btn-lg " data-toggle="modal" data-target="#myUpdate">Update</button></td>
-                <td><a href="@routes.LanguageController.delete(li.name)">Delete</a></td>
+                <!--<td><a href="@routes.LanguageController.delete(li.name)">Delete</a></td>-->
+                <td>
+                    <button type="button"  value="@li.name" class="btn btn-danger deleteButton">
+                        <span class="glyphicon glyphicon-remove"></span> Delete
+                    </button>
+                </td>
             </tr>
             }
             </tbody>
@@ -44,5 +51,32 @@
             </div>
         </div>
     </div>
+
+    <script>
+            function refreshTable() {
+                    $.get(" listprog  ", function(data, status){
+                $("#showProg").html(data)
+                 });
+            }
+
+              $(".deleteButton").click(function(){
+                 var row = $(this);
+                var id = $(this).attr('value');
+                $("#showAward").html("")
+                    $.ajax({     type : 'POST',
+                                       url : "deleteprog/"+id ,
+                                       success: function (data) {
+                                      row.closest('tr').remove();
+                        },
+                        error: function (data, status) {
+                            alert("Something Went Wrong");
+                            refreshTable();
+                        }
+                                   });
+
+                });
+
+
+            </script>
 </div>
 }

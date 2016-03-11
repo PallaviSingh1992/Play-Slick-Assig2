@@ -17,24 +17,24 @@ GET     /listassigid                controllers.AssignmentController.listById
 
 
 GET     /listaward                  controllers.AwardController.list
-GET     /deleteaward/:name          controllers.AwardController.delete(name:String)
+POST     /deleteaward/:name          controllers.AwardController.delete(name:String)
 GET     /listbyid               controllers.AwardController.listById
-GET     /addaward                   controllers.AwardController.add
-GET     /update                     controllers.AwardController.update
+POST     /addaward                   controllers.AwardController.add
+POST     /update                     controllers.AwardController.update
 
 
 
 GET     /listlangid             controllers.LanguageController.listById
-GET     /deletelang/:name          controllers.LanguageController.delete(name:String)
-GET     /addlang                   controllers.LanguageController.add
-GET     /update                     controllers.LanguageController.update
+POST     /deletelang/:name          controllers.LanguageController.delete(name:String)
+POST     /addlang                   controllers.LanguageController.add
+POST     /update                     controllers.LanguageController.update
 
 
 
 
 GET     /listprog                   controllers.ProgLanguageController.listById
-GET     /deleteprog/:name           controllers.ProgLanguageController.delete(name:String)
-GET     /addprog                    controllers.ProgLanguageController.add
+POST     /deleteprog/:name           controllers.ProgLanguageController.delete(name:String)
+POST     /addprog                    controllers.ProgLanguageController.add
 
 
 
