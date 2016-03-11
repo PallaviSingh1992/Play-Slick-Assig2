@@ -1,4 +1,6 @@
 package repository
+
+import models.ProgLanguage
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
@@ -41,7 +43,10 @@ class ProgLanguageRepoTest extends Specification{
     }
 
     "get a particular record" in new WithApplication{
-      val res=plangRepo.
+      val res=plangRepo.getProgLanguage(1)
+      val response=Await.result(res,Duration.Inf)
+     response===Vector(ProgLanguage(1,"++")
+
     }
 
   }
