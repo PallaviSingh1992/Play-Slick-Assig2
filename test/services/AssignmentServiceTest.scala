@@ -55,7 +55,7 @@ class AssignmentServiceTest extends PlaySpecification with Mockito{
     "get records by id" in new WithApplication() {
 
       when(service.getAssignment(1)).thenReturn(Future(List(Assignment(1,"scala",7,"average"))))
-      val res=controller.getAssignment
+      val res=controller.getAssignmentById(1)
       val response=Await.result(res,Duration.Inf)
       response===List(Assignment(1,"scala",7,"average"))
     }

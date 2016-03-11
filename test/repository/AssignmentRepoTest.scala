@@ -1,5 +1,6 @@
 package repository
 
+import models.Assignment
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
@@ -39,6 +40,12 @@ class AssignmentRepoTest extends Specification{
       val response=Await.result(res,Duration.Inf)
       response === 1
 
+    }
+
+    "get assignment by id" in new WithApplication() {
+      val res=assigRepo.getAssignment(1)
+      val response=Await.result(res,Duration.Inf)
+      response===Vector(Assignment(1,"scala",7,"no remark"))
     }
   }
 
