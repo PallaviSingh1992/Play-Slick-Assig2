@@ -60,4 +60,9 @@ class LoginController @Inject() (user:UserServiceApi)extends Controller {
     Ok(views.html.home())
   }
 
+  def logout=Action{implicit request=>
+    Redirect(routes.LoginController.getLogin()).withNewSession
+
+  }
+
 }
