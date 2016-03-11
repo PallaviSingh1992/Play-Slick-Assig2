@@ -1,5 +1,6 @@
 package repository
 
+import models.Language
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
@@ -39,6 +40,13 @@ class LanguageRepoTest extends Specification{
       val response=Await.result(res,Duration.Inf)
       response===1
     }
+
+    "get records by id" in new WithApplication() {
+      val res=langRepo.getLanguage(1)
+      val response=Await.result(res,Duration.Inf)
+      response===Vector(Language(1,"hindi","advanced"))
+    }
+
 
   }
 

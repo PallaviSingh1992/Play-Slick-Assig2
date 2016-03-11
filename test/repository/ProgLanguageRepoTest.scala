@@ -40,6 +40,10 @@ class ProgLanguageRepoTest extends Specification{
       response===1
     }
 
+    "get a particular record" in new WithApplication{
+      val res=plangRepo.
+    }
+
   }
 
 }

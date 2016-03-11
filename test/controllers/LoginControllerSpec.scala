@@ -25,6 +25,11 @@ class LoginControllerSpec extends PlaySpecification {
       val res=route(FakeRequest(GET,"/home")).get
       status(res) must equalTo(OK)
     }
+
+    "logout from application" in  new WithApplication{
+      val res=route(FakeRequest(GET,"/logout")).get
+      status(res) must equalTo(SEE_OTHER)
+    }
   }
 
 }

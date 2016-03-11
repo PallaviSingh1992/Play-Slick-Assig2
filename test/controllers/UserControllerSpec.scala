@@ -29,6 +29,24 @@ class UserControllerSpec extends PlaySpecification with Mockito {
       status(res) must equalTo(OK)
     }
 
+    "add users" in new WithApplication() {
+
+      when(service.insertUser(1,"himani","himani@knoldus.in","22510498","himani")).thenReturn(Future(1))
+      val res=call(controller.add,FakeRequest(GET,"/list"))
+      status(res) must equalTo(OK)
+    }
+
+    "delete users" in new WithApplication() {
+      when(service.deleteUser(1)).thenReturn(Future(1))
+      val res=call(controller.delete(1),FakeRequest(GET,"/list"))
+      status(res) must equalTo(SEE_OTHER)
+    }
+
+    "update users" in new WithApplication() {
+      when(service.updateUser(1,"himani","himani@knol.in","22598609","himani")).thenReturn(Future(1))
+      val res=call(controller.update,FakeRequest(GET,"/list"))
+      status(res) must equalTo(OK)
+    }
 
   }
 }
