@@ -63,7 +63,7 @@
                  var row = $(this);
                 var id = $(this).attr('value');
                 $("#showAward").html("")
-                    $.ajax({     type : 'POST',
+                    $.ajax({     type : 'GET',
                                        url : "deleteprog/"+id ,
                                        success: function (data) {
                                       row.closest('tr').remove();

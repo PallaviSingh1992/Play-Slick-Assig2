@@ -62,7 +62,7 @@
                  var row = $(this);
                 var id = $(this).attr('value');
                 $("#showLang").html("")
-                    $.ajax({     type : 'POST',
+                    $.ajax({     type : 'GET',
                                        url : "deletelang/"+id ,
                                        success: function (data) {
                                       row.closest('tr').remove();
