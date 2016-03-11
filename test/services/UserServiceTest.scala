@@ -51,6 +51,14 @@ class UserServiceTest extends PlaySpecification with Mockito{
       response===Some(User(1,"himani","himani@knoldus.in","22510269","himani"))
 
     }
+
+    "get all users" in new WithApplication() {
+
+      when(service.getAll()).thenReturn(Future(List(User(1,"himani","himani@knol.in","22468597","himani"))))
+      val res=controller.getUser
+      val response=Await.result(res,Duration.Inf)
+      response===List(User(1,"himani","himani@knol.in","22468597","himani"))
+    }
   }
 
 }

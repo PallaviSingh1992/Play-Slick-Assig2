@@ -45,7 +45,7 @@ class ProgLanguageRepoTest extends Specification{
     "get a particular record" in new WithApplication{
       val res=plangRepo.getProgLanguage(1)
       val response=Await.result(res,Duration.Inf)
-     response===Vector(ProgLanguage(1,"c+"))
+     response===Vector(ProgLanguage(1,"c++"))
 
     }
 
