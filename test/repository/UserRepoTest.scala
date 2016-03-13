@@ -38,5 +38,11 @@ class UserRepoTest extends Specification {
       val response=Await.result(res,Duration.Inf)
       response ===1
     }
+
+    "update student record" in new WithApplication() {
+      val res=userRepo.update(1,"simar","simar@gmail.com","22469870","simar")
+      val response=Await.result(res,Duration.Inf)
+      response===1
+    }
   }
 }

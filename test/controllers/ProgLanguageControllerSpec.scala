@@ -32,7 +32,7 @@ class ProgLanguageControllerSpec extends PlaySpecification with Mockito {
 
     "list languages by id" in new WithApplication() {
       when(service.getProgId(1)).thenReturn(Future(List(ProgLanguage(1,"scala"))))
-      val res = call(controller.list, FakeRequest(GET, "/listprog").withSession("id"->"1"))
+      val res = call(controller.listById, FakeRequest(GET, "/listprog").withSession("id"->"1"))
       status(res) must equalTo(OK)
     }
 

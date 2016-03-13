@@ -16,7 +16,7 @@ trait LanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcProfi
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
     val fluency=column[String]("fluency", O.SqlType("VARCHAR(200)"))
 
-    def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
+    /*def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)*/
     def * = (id, name,fluency) <>(Language.tupled, Language.unapply)
   }
 

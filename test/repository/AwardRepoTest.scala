@@ -1,5 +1,6 @@
 package repository
 
+import models.Award
 import org.junit.runner.RunWith
 import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
@@ -39,6 +40,10 @@ class AwardRepoTest extends Specification{
       response===0
     }
 
-
+    "get awards by id" in new WithApplication() {
+      val res=awardRepo.getAward(1)
+      val response=Await.result(res,Duration.Inf)
+      response===Vector(Award(1,"best programmer","school level"))
+    }
   }
 }

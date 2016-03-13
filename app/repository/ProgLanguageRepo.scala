@@ -15,7 +15,7 @@ trait ProgLanguageTable extends UserTable{ self: HasDatabaseConfigProvider[JdbcP
     val id=column[Int]("id")
     val name= column[String]("name", O.SqlType("VARCHAR(200)"))
 
-    def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)
+   /* def rel = foreignKey("user_id_fk",id, userTableQuery)(_.id)*/
     def * = (id, name) <>(ProgLanguage.tupled, ProgLanguage.unapply)
   }
 

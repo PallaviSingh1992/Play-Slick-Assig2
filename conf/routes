@@ -17,7 +17,7 @@ GET     /listassigid                controllers.AssignmentController.listById
 
 
 GET     /listaward                  controllers.AwardController.list
-POST     /deleteaward/:name          controllers.AwardController.delete(name:String)
+GET     /deleteaward/:name          controllers.AwardController.delete(name:String)
 GET     /listbyid               controllers.AwardController.listById
 GET    /addaward                   controllers.AwardController.add
 GET     /update                     controllers.AwardController.update

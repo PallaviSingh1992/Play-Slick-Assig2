@@ -15,7 +15,7 @@ import scala.concurrent.Future
 
 @RunWith(classOf[JUnitRunner])
 class AwardControllerSpec extends  PlaySpecification with Mockito{
-
+      sequential
   "Award Controller" should{
     val service=mock[AwardServiceApi]
     val controller=new AwardController(service)
@@ -51,14 +51,14 @@ class AwardControllerSpec extends  PlaySpecification with Mockito{
     "Update awards with correct form date" in new WithApplication() {
 
       when(service.updateAward(1,"best speaker","zonal")).thenReturn(Future(1))
-      val res=call(controller.update,FakeRequest(GET,"/update"))
+      val res=call(controller.update,FakeRequest(GET,"/update").withFormUrlEncodedBody("id"->"1","name"->"best speaker","details"->"zonal").withSession("id"->"1"))
       status(res) must equalTo(OK)
     }
 
     "list awards by id" in new WithApplication() {
 
       when(service.getAwardById(1)).thenReturn(Future(List(Award(1,"best coder","zonal level"))))
-      val res=call(controller.list,FakeRequest(GET,"/listbyid").withFormUrlEncodedBody("id"->"1","name"->"best coder","details"->"zonal level").withSession("id"->"1"))
+      val res=call(controller.listById,FakeRequest(GET,"/listbyid").withFormUrlEncodedBody("id"->"1","name"->"best coder","details"->"zonal level").withSession("id"->"1"))
       status(res) must equalTo(OK)
     }
 

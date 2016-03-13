@@ -56,7 +56,7 @@ class AwardController @Inject()(service:AwardServiceApi) extends Controller {
   def update=Action.async{implicit request =>
     awardForm.bindFromRequest.fold(
       // if any error in submitted data
-      errorForm => Future.successful(Ok("success")),
+      errorForm =>{ println("bad");  Future.successful(Ok("success"))},
       data => {
         val id:Int=request.session.get("id").get.toInt
         service.updateAward(data.id,data.name,data.details).map(res =>
